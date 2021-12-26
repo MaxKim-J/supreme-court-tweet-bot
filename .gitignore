@@ -5,6 +5,8 @@ node_modules
 .pnp
 .pnp.js
 
+.idea
+
 # testing
 coverage
 
@@ -36,3 +38,11 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+logs
+*.log
+firebase-debug.log*
+firebase-debug.*.log*
+
+# Firebase cache
+.firebase/
