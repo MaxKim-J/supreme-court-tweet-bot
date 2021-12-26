@@ -1,4 +1,4 @@
-const lengthFilter = (length) => {
+const lengthFilter = (length:20|40|80) => {
   switch(length) {
     case 20:
       return '1';
@@ -11,4 +11,4 @@ const lengthFilter = (length) => {
   }
 }
 
-module.exports = lengthFilter
+export default lengthFilter;

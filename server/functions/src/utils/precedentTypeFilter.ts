@@ -1,4 +1,4 @@
-const precedentTypeFilter = (type) => {
+const precedentTypeFilter = (type:string) => {
   if ('가나다라마바사아자차카타파하'.includes(type)) {
     return 'civil'
   } else if ('고노도로모보소오조초코토포호'.includes(type)) {
@@ -12,4 +12,4 @@ const precedentTypeFilter = (type) => {
   }
 }
 
-module.exports = precedentTypeFilter
+export default precedentTypeFilter

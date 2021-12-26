@@ -3,16 +3,16 @@
   "description": "Cloud Functions for Firebase",
   "scripts": {
     "lint": "eslint .",
-    "serve": "firebase emulators:start --only functions",
+    "serve": "tsc && firebase emulators:start --only functions",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
   "engines": {
-    "node": "10"
+    "node": "16"
   },
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "dependencies": {
     "axios": "^0.20.0",
     "dotenv": "^8.2.0",
@@ -22,6 +22,8 @@
     "twitter": "^1.7.1"
   },
   "devDependencies": {
+    "@types/puppeteer": "^5.4.4",
+    "@types/twitter": "^1.7.1",
     "eslint": "^5.12.0",
     "eslint-plugin-promise": "^4.0.1",
     "firebase-functions-test": "^0.2.0"
