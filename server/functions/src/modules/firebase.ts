@@ -1,12 +1,28 @@
 import admin from 'firebase-admin';
 import { batchDivider } from '../utils/batchSplitHelper'
+import {Tweet} from "../types";
 
 class Firebase {
   constructor() {
     admin.initializeApp({
       credential: admin.credential.applicationDefault(),
-      databaseURL: 'https://supreme-court-tweet-bot-63f82.firebaseio.com/'
+      databaseURL: process.env.DATABASE_URL
     });
+  }
+
+  async getTweetForPost() {
+    const query = admin.firestore().collection('tweet')
+        .where("uploadedAt", "==", null)
+        .limit(1)
+    const result = await query.get()
+    return result.docs.map(x => x.data() as Tweet)[0]
+  }
+
+  async putTweetTimeStamp (id:string) {
+    const docRef = admin.firestore().collection('tweet').doc(id)
+    await docRef.update({
+      uploadedAt:new Date()
+    })
   }
 
   async saveTweets(tweets:any[]) {
