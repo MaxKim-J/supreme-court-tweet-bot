@@ -1,5 +1,5 @@
 import { crawlTarget } from '../configs';
-import precedentTypeFilter from '../utils/precedentTypeFilter'
+import filterPrecedentType from '../utils/precedentTypeFilter'
 import lengthFilter from '../utils/lengthFilter'
 import {Browser, ElementHandle, EvaluateFn, Page} from "puppeteer";
 
@@ -119,8 +119,8 @@ class PrecedentCrawler {
       const titleElem = await section.$('td:nth-child(2)>dl>dt>a>strong>strong')
       if (titleElem) {
           name = await titleElem.evaluate<EvaluateFn>((elem:HTMLElement) => elem.innerText)
-          const precedentType = name.split(' ')[5].slice(4,5)
-          type = precedentTypeFilter(precedentType)
+          const classifyString = name.match(/\d+[가-힣]+\d+/)
+          type = filterPrecedentType(classifyString !== null ? classifyString[0].replace(/\d/g,'') : '')
       }
       return {name, type}
   }

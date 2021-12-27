@@ -1,5 +1,5 @@
 import admin from 'firebase-admin';
-import {arrayDivider} from '../utils/batchSplitHelper'
+import { batchDivider } from '../utils/batchSplitHelper'
 
 class Firebase {
   constructor() {
@@ -9,34 +9,32 @@ class Firebase {
     });
   }
 
-  async savePrecedentsInFireStore(data:any[]) {
-    // 배치를 나눠야함
-    const realData = arrayDivider(data)
-    console.log(realData.length)
-    for (const data of realData) {
+  async saveTweets(tweets:any[]) {
+    const batchedTweets = batchDivider(tweets)
+    for (const tweets of batchedTweets) {
       const batch = admin.firestore().batch();
-      for (const obj of data) {
-        const newDocRef = admin.firestore().collection('tweet').doc(obj.id);
-        batch.set(newDocRef, obj)
+      for (const tweet of tweets) {
+        const newDocRef = admin.firestore().collection('tweet').doc(tweet.id);
+        batch.set(newDocRef, tweet)
       }
       await batch.commit()
     }
   }
 
-  async getFormerLengthFromDB() {
+  async getFormerLength() {
     const lastIssueLength = await admin.database().ref('/lastIssueLength').once('value')
     const lastRecentLength = await admin.database().ref('/lastRecentLength').once('value')
     return {lastIssueLength:lastIssueLength.val(), lastRecentLength:lastRecentLength.val()}
   }
 
-  async updateIssueLengthToDB(lastIssueLength:number) {
+  async updateIssueLength(lastIssueLength:number) {
     await admin
       .database()
       .ref("/lastIssueLength")
       .set(lastIssueLength);
   }
 
-  async updateRecentLengthToDB(lastRecentLength:number) {
+  async updateRecentLength(lastRecentLength:number) {
     await admin
       .database()
       .ref("/lastRecentLength")

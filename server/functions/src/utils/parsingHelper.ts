@@ -2,19 +2,18 @@
 
 const parseContent = (content:string) => content.split('<br>').filter((line:string) => line)
 
-const convertPrecedentToTweet = (data:any):any[] => {
+const convertToTweet = (data:any):any[] => {
   const result:any[] = []
   parseContent(data.content).forEach((content, index) => {
     result.push({
       ...data,
       id: `${data.url}-${index+1}`,
       content,
-      uploadedAt:false,
+      uploadedAt: null,
     })
   })
 
-  // 트윗 여러개 리턴
   return result
 }
 
-export default convertPrecedentToTweet
+export default convertToTweet
