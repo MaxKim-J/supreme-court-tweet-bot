@@ -5,8 +5,17 @@ import PrecedentCrawler from './modules/precedentCrawler';
 import TweetBot from './modules/tweetBot';
 import Firebase from './modules/firebase';
 import convertToTweet from './utils/parsingHelper'
+import loadExpressApp from "./api";
+import express from 'express'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const firebase = new Firebase()
+
+const app = express()
+loadExpressApp(app, firebase)
+exports.api = functions.https.onRequest(app)
 
 exports.initialCrawler = functions.runWith(defaultRuntimeOpts).https.onRequest(async(req, res) => {
     try {

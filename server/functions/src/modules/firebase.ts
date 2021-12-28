@@ -10,6 +10,28 @@ class Firebase {
     });
   }
 
+  // TODO: firebase 제품별로 계층분리
+  async getUploadedTweets() {
+    const query = admin.firestore().collection('tweet')
+        .where("uploadedAt", "!=", null).limit(10)
+    const result = await query.get()
+    return result.docs.map(x => x.data() as Tweet)
+  }
+
+  async getTweet(id:string) {
+    const query = admin.firestore().collection('tweet')
+        .where("id", "==", id)
+    const result = await query.get()
+    return result.docs.map(x => x.data() as Tweet)[0]
+  }
+
+  async getUploadTweetsLength() {
+    const query = admin.firestore().collection('tweet')
+        .where("uploadedAt", "!=", null)
+    const result = await query.get()
+    return result.docs.length;
+  }
+
   async getTweetForPost() {
     const query = admin.firestore().collection('tweet')
         .where("uploadedAt", "==", null)
