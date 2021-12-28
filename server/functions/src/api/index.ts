@@ -1,21 +1,20 @@
 import {Express, NextFunction, Request, Response} from 'express';
 import cors from 'cors'
-import Controller from "./controller";
-import Firebase from "../modules/firebase";
+import controller from "./controller";
+import {ResponseError} from "./error/responseError";
 
-const loadExpressApp = (app:Express, fireBaseInstance:Firebase) => {
-    const controller = new Controller(fireBaseInstance); // 싱글턴 파이어베이스 인스턴스
-
+const loadExpressApp = (app:Express) => {
     app.use(cors({ origin: true, credentials: true }))
 
-    app.get('/info', controller.getInfo.bind(controller))
-    app.get('/tweet/:id', controller.getTweetById.bind(controller))
-    app.get('/tweets/last', controller.getLastTweets.bind(controller))
+    app.get('/info', controller.getInfo)
+    app.get('/tweet/:id', controller.getTweetById)
+    app.get('/tweets/last', controller.getLastTweets) // 거슬리는데..
 
-    app.use((error:any, req:Request, res:Response, next:NextFunction) => {
-        res.status(500).json({
+    app.use((error:Error, req:Request, res:Response, next:NextFunction) => {
+        const errorCode = error instanceof ResponseError ? error.statusCode : 500;
+        res.status(errorCode).json({
             message: error.message,
-            statusCode: error.statusCode,
+            statusCode: errorCode,
             error,
         }).end()
     })

@@ -1,9 +1,9 @@
-import { crawlTarget } from '../configs';
-import filterPrecedentType from '../utils/precedentTypeFilter'
-import lengthFilter from '../utils/lengthFilter'
+import { crawlTarget } from '../@shared/configs';
+import filterPrecedentType from './utils/precedentTypeFilter'
+import lengthFilter from './utils/lengthFilter'
 import {Browser, ElementHandle, EvaluateFn, Page} from "puppeteer";
 
-class PrecedentCrawler {
+class Crawler {
   constructor(private browser:Browser, private page:Page) {
     this.browser = browser;
     this.page = page;
@@ -161,4 +161,4 @@ class PrecedentCrawler {
   }
 }
 
-export default PrecedentCrawler;
+export default Crawler;
