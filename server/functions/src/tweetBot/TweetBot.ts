@@ -1,7 +1,7 @@
 import Twitter from 'twitter';
 
 class TweetBot {
-  private client:Twitter
+  private client: Twitter;
   constructor() {
     this.client = new Twitter({
       consumer_key: process.env.CONSUMER_KEY as string,
@@ -11,12 +11,18 @@ class TweetBot {
     });
   }
 
-  postTweet(id:string, title:string) {
-    this.client.post('statuses/update', {
-      status:`${title}\nhttps://tweet-bot-client.vercel.app/detail/${id}`
-    },(err) => {
-      if(err) {throw err}
-    })
+  postTweet(id: string, title: string) {
+    this.client.post(
+      'statuses/update',
+      {
+        status: `${title}\nhttps://tweet-bot-client.vercel.app/detail/${id}`,
+      },
+      (err) => {
+        if (err) {
+          throw err;
+        }
+      }
+    );
   }
 }
 

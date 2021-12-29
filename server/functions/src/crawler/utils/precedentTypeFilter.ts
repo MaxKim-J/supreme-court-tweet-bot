@@ -1,17 +1,17 @@
 const typeFilter = {
-  'civil' : '가나다라마바사아자차카타파하',
-  'criminal':'고노도로모보소오조초코토포호',
-  'domestic': '그느드르므브스으즈츠크트프흐',
-  'administration': '구누두루무부수우주추쿠투푸후',
-}
+  civil: '가나다라마바사아자차카타파하',
+  criminal: '고노도로모보소오조초코토포호',
+  domestic: '그느드르므브스으즈츠크트프흐',
+  administration: '구누두루무부수우주추쿠투푸후',
+};
 
-const filterPrecedentType = (str:string) => {
-  for (let i=0;i<str.length;i++) {
+const filterPrecedentType = (str: string) => {
+  for (let i = 0; i < str.length; i++) {
     for (const [key, value] of Object.entries(typeFilter)) {
-      if (value.includes(str[i])) return key
+      if (value.includes(str[i])) return key;
     }
   }
-  return 'unclassified'
-}
+  return 'unclassified';
+};
 
-export default filterPrecedentType
+export default filterPrecedentType;

@@ -1,5 +1,5 @@
-const lengthFilter = (length:20|40|80) => {
-  switch(length) {
+const lengthFilter = (length: 20 | 40 | 80) => {
+  switch (length) {
     case 20:
       return '1';
     case 40:
@@ -9,6 +9,6 @@ const lengthFilter = (length:20|40|80) => {
     default:
       return '3';
   }
-}
+};
 
 export default lengthFilter;
