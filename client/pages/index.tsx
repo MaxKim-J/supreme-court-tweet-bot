@@ -1,25 +1,30 @@
 import Head from 'next/head';
-import { css } from '@emotion/react';
 import { GetServerSideProps } from 'next';
 import { apiClient } from '../utils/apiClient';
 import { AppInfo } from '../../server/functions/src/@shared/types';
+import TweetSection from '../components/TweetSection';
+import AppInfoSection from '../components/AppInfoSection';
+import TweetListSection from '../components/TweetListSection';
 
 type HomePageProps = {
   appInfo: AppInfo;
 };
 
 function Home({ appInfo }: HomePageProps) {
-  console.log(appInfo);
   return (
     <>
       <Head>
         <title>판례요지봇</title>
-        <meta name="twitter:title" content="판례요지봇" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:description" content="이 트윗과 연관된 판례 보기" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content="판례요지봇" />
+        <meta
+          property="og:description"
+          content="대법원 판례를 트윗하는 봇입니다."
+        />
+        <meta property="og:image" content="/" />
       </Head>
-      <div css={divStyle}>홈페이지</div>
+      <AppInfoSection appInfo={appInfo} />
+      <TweetSection />
+      <TweetListSection />
     </>
   );
 }
@@ -33,9 +38,5 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     return { notFound: true };
   }
 };
-
-const divStyle = css`
-  color: red;
-`;
 
 export default Home;
