@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import Link from 'next/link';
 import Head from 'next/head';
 import { css } from '@emotion/react';
 
@@ -11,6 +12,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div css={divStyle}>홈페이지</div>
+      <Link href="/tweet/3">가보기</Link>
     </>
   );
 };
