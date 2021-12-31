@@ -5,6 +5,7 @@ import { AppInfo } from '../../server/functions/src/@shared/types';
 import TweetSection from '../components/TweetSection';
 import AppInfoSection from '../components/AppInfoSection';
 import TweetListSection from '../components/TweetListSection';
+import Spacer from '../components/fundamentals/Spacer';
 
 type HomePageProps = {
   appInfo: AppInfo;
@@ -22,8 +23,11 @@ function Home({ appInfo }: HomePageProps) {
         />
         <meta property="og:image" content="/" />
       </Head>
+      <Spacer height="1rem" />
       <AppInfoSection appInfo={appInfo} />
+      <Spacer height="1rem" />
       <TweetSection />
+      <Spacer height="2rem" />
       <TweetListSection />
     </>
   );

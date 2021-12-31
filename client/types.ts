@@ -13,3 +13,8 @@ export interface Tweet {
   content: string;
   type: PrecedentType;
 }
+
+export interface AppInfo {
+  tweets: number;
+  precedents: number;
+}

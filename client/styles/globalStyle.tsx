@@ -4,11 +4,16 @@ const GlobalStyle = () => <Global styles={globalStyle} />;
 
 const fontFace = css`
   @font-face {
-    font-family: 'YeolrinGothic-Medium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/YeolrinGothic-Medium.woff')
-      format('woff');
-    font-weight: normal;
+    font-family: 'NanumBarunGothic';
     font-style: normal;
+    font-weight: 400;
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix')
+        format('embedded-opentype'),
+      url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff')
+        format('woff'),
+      url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf')
+        format('truetype');
   }
 
   @font-face {
@@ -24,6 +29,8 @@ const globalStyle = css`
   ${fontFace}
 
   html {
+    font-family: 'NanumBarunGothic', sans-serif;
+
     @media (max-width: 420px) {
       font-size: 12px;
     }
@@ -50,7 +57,6 @@ const globalStyle = css`
   }
 
   body {
-    font-family: 'YeolrinGothic-Medium', sans-serif;
     overscroll-behavior-y: none;
   }
 
@@ -66,6 +72,16 @@ const globalStyle = css`
     cursor: pointer;
     padding: 0;
     font-family: inherit;
+  }
+
+  ol {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: transparent;
+    list-style: none;
   }
 `;
 

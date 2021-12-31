@@ -50,9 +50,10 @@ const headerStyle = css`
   position: fixed;
   top: 0;
   background-color: green;
-  width: 100%;
+  width: inherit;
   height: 3.5rem;
   text-align: center;
+  padding: 0 1rem;
   > p {
     font-size: 2rem;
     font-family: 'Y_Spotlight', sans-serif;
