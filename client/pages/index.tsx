@@ -23,9 +23,9 @@ function Home({ appInfo }: HomePageProps) {
         />
         <meta property="og:image" content="/" />
       </Head>
-      <Spacer height="1rem" />
+      <Spacer height="2rem" />
       <AppInfoSection appInfo={appInfo} />
-      <Spacer height="1rem" />
+      <Spacer height="2rem" />
       <TweetSection />
       <Spacer height="2rem" />
       <TweetListSection />

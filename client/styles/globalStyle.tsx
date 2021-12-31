@@ -29,8 +29,6 @@ const globalStyle = css`
   ${fontFace}
 
   html {
-    font-family: 'NanumBarunGothic', sans-serif;
-
     @media (max-width: 420px) {
       font-size: 12px;
     }
@@ -74,6 +72,7 @@ const globalStyle = css`
     font-family: inherit;
   }
 
+  ul,
   ol {
     margin: 0;
     padding: 0;

@@ -2,6 +2,8 @@ import type { AppProps } from 'next/app';
 import GlobalStyle from '../styles/globalStyle';
 import { css } from '@emotion/react';
 import Head from 'next/head';
+import Header from '../components/Layouts/Header';
+import Footer from '../components/Layouts/Footer';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -11,25 +13,23 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>판례요지봇</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <section css={appWrapperStyle}>
-        <header css={headerStyle}>
-          <p>판례요지봇</p>
-        </header>
-        <main css={mainStyle}>
-          <Component {...pageProps} />
-        </main>
-      </section>
+      <div css={appWrapperStyle}>
+        <section css={appSectionStyle}>
+          <Header />
+          <main css={mainStyle}>
+            <Component {...pageProps} />
+          </main>
+          <Footer />
+        </section>
+      </div>
     </>
   );
 }
 
 const appWrapperStyle = css`
-  margin: 3.5rem auto;
-  padding: 1rem;
-  min-height: calc(100vh + 3.5rem);
-  display: flex;
-  justify-content: center;
-  background-color: lightblue;
+  margin: 0 auto;
+  height: 100vh;
+
   @media (max-width: 420px) {
     width: 100%;
   }
@@ -39,25 +39,13 @@ const appWrapperStyle = css`
   }
 `;
 
-const mainStyle = css`
-  width: 100%;
+const appSectionStyle = css`
+  margin: 3.5rem auto;
 `;
 
-const headerStyle = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  background-color: green;
+const mainStyle = css`
   width: inherit;
-  height: 3.5rem;
-  text-align: center;
-  padding: 0 1rem;
-  > p {
-    font-size: 2rem;
-    font-family: 'Y_Spotlight', sans-serif;
-  }
+  padding: 1rem;
 `;
 
 export default MyApp;
