@@ -22,11 +22,13 @@ exports.scrapAll = functions
   .runWith(defaultRuntimeOpts)
   .https.onRequest(crawler.scrapAll);
 
-exports.scrapRecent = functions
+exports.scheduledScrap = functions
   .runWith(defaultRuntimeOpts)
   .pubsub.schedule('00 00 * * *')
+  .timeZone('Asia/Seoul')
   .onRun(crawler.scrapRecent);
 
-exports.postTweet = functions.pubsub
+exports.scheduledPostTweet = functions.pubsub
   .schedule('00 7,12,18 * * *')
+  .timeZone('Asia/Seoul')
   .onRun(tweetBot.postTweet);
