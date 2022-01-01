@@ -7,16 +7,9 @@ class MyDocument extends Document {
         <Head>
           <title>판례요지봇</title>
           <link rel="icon" href="/favicon.png" />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             rel="preload"
-            href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500&display=swap"
-            as="stylesheet"
-          />
-          <link
-            rel="preload"
-            href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@500&display=swap"
             as="stylesheet"
           />
           <meta
