@@ -1,14 +1,16 @@
 import { css } from '@emotion/react';
 import { AppInfo } from '../types';
 import Text from '../components/fundamentals/Text';
-import Spacer from './fundamentals/Spacer';
 
 function AppInfoSection({ appInfo }: { appInfo: AppInfo }) {
   return (
     <section>
       <div css={infoSectionStyle}>
         <Text size="0.8rem" lineHeight="1.2rem">
-          법원 종합법률정보의 대법원 공개판례를 트윗하는 봇입니다.
+          <a href="https://mglaw.scourt.go.kr/wsjs/main/sjs690.do">
+            <u>법원 종합법률정보</u>
+          </a>
+          의 대법원 공개판례를 트윗하는 봇입니다.
         </Text>
         <Text size="0.8rem" lineHeight="1.2rem">
           <strong>{appInfo.precedents}개의 판례</strong>를 바탕으로{' '}

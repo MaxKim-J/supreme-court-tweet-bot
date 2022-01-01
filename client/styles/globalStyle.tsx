@@ -59,7 +59,6 @@ const globalStyle = css`
   }
 
   a {
-    display: block;
     text-decoration: none;
     color: black;
   }

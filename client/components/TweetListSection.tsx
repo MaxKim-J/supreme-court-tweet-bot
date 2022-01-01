@@ -18,7 +18,7 @@ function TweetListSection() {
   });
 
   return (
-    <article css={listSectionStyle}>
+    <section css={listSectionStyle}>
       <Divider />
       <Spacer height="2rem" />
       <Text size="1.5rem" weight="bold">
@@ -54,7 +54,7 @@ function TweetListSection() {
           ))}
         </>
       )}
-    </article>
+    </section>
   );
 }
 
