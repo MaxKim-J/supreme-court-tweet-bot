@@ -29,11 +29,11 @@ const globalStyle = css`
   ${fontFace}
 
   html {
-    @media (max-width: 420px) {
+    @media (max-width: 382px) {
       font-size: 14px;
     }
 
-    @media (min-width: 420px) {
+    @media (min-width: 382px) {
       font-size: 16px;
     }
   }

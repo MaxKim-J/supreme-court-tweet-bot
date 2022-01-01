@@ -30,12 +30,12 @@ const appWrapperStyle = css`
   margin: 0 auto;
   height: 100vh;
 
-  @media (max-width: 420px) {
+  @media (max-width: 382px) {
     width: 100%;
   }
 
-  @media (min-width: 420px) {
-    width: 420px;
+  @media (min-width: 382px) {
+    width: 382px;
   }
 `;
 

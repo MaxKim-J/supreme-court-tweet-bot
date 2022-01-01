@@ -4,7 +4,6 @@ import { Tweet } from '../../types';
 import Head from 'next/head';
 import TweetDetailSection from '../../components/TweetDetailSection';
 import TweetListSection from '../../components/TweetListSection';
-import { css } from '@emotion/react';
 import Spacer from '../../components/fundamentals/Spacer';
 
 type TweetPageProps = {
@@ -22,7 +21,7 @@ function TweetPage({ tweet }: TweetPageProps) {
         <meta property="og:title" content={tweet.name} />
         <meta property="og:image" content="/" />
       </Head>
-      <section css={tweetDetailSectionStyle}>
+      <section>
         <TweetDetailSection tweet={tweet} />
         <Spacer height="3rem" />
         <TweetListSection />
@@ -43,9 +42,5 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     return { notFound: true };
   }
 };
-
-const tweetDetailSectionStyle = css`
-  min-height: 100vh;
-`;
 
 export default TweetPage;

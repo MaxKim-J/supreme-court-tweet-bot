@@ -1,9 +1,10 @@
 import { Fragment } from 'react';
-
 import { css } from '@emotion/react';
 import Text from './fundamentals/Text';
 import { Tweet } from '../types';
 import Spacer from './fundamentals/Spacer';
+import PrecedentTypeMarker from './PrecedentTypeMarker';
+import colorTable from '../styles/colorTable';
 
 type TweetDetailSectionProps = {
   tweet: Tweet;
@@ -11,11 +12,13 @@ type TweetDetailSectionProps = {
 
 function TweetDetailSection({ tweet }: TweetDetailSectionProps) {
   return (
-    <section>
-      <Text>{tweet.id}</Text>
+    <section css={tweetDetailSectionStyle}>
       <Spacer height="1rem" />
-      <Text>{tweet.type}</Text>
-      <Spacer height="1rem" />
+      <div css={markerWrapperStyle}>
+        <PrecedentTypeMarker precedentType={tweet.type} />
+        <Text size="0.5rem">{tweet.id}</Text>
+      </div>
+      <Spacer height="2rem" />
       <Text weight="bold" lineHeight="1.5rem">
         {tweet.name}
       </Text>
@@ -48,14 +51,22 @@ function TweetDetailSection({ tweet }: TweetDetailSectionProps) {
         ))}
       </details>
       <Spacer height="3rem" />
-      <hr />
     </section>
   );
 }
+const tweetDetailSectionStyle = css`
+  min-height: 100vh;
+`;
 
+const markerWrapperStyle = css`
+  display: flex;
+  > div {
+    margin-right: 0.5rem;
+  }
+`;
 const tweetContentStyle = css`
   padding: 1rem;
-  background-color: #f7f7f7;
+  background-color: ${colorTable.lightGrey};
 `;
 
 export default TweetDetailSection;

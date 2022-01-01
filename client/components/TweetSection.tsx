@@ -24,13 +24,7 @@ function TweetSection() {
 const tweetSectionStyle = css`
   width: 100%;
   position: relative;
-  @media (max-width: 382px) {
-    height: 360px;
-  }
-
-  @media (min-width: 382px) {
-    height: 420px;
-  }
+  height: 350px;
 `;
 
 const tweetContentStyle = (isLoading: boolean) => css`
@@ -38,9 +32,6 @@ const tweetContentStyle = (isLoading: boolean) => css`
   opacity: ${isLoading ? 0 : 1};
   transition: opacity 1s ease-in;
   position: absolute;
-  iframe {
-    height: 420px !important;
-  }
 `;
 
 export default TweetSection;

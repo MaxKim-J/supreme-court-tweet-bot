@@ -26,12 +26,12 @@ const headerStyle = css`
   box-shadow: 0 13px 16px -8px rgba(0, 0, 0, 0.05);
   height: 3.5rem;
   z-index: 1;
-  @media (max-width: 420px) {
+  @media (max-width: 382px) {
     width: 100%;
   }
 
-  @media (min-width: 420px) {
-    width: 420px;
+  @media (min-width: 382px) {
+    width: 382px;
   }
   > p {
     font-family: 'Y_Spotlight', sans-serif;
