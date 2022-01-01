@@ -11,7 +11,7 @@ class MyDocument extends Document {
             rel="preload"
             crossOrigin="anonymous"
             as="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@500&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500;900&display=swap"
           />
           <meta
             property="og:description"

@@ -5,6 +5,7 @@ const GlobalStyle = () => <Global styles={globalStyle} />;
 
 const globalStyle = css`
   html {
+    font-family: 'Gothic A1', sans-serif;
     ${fontSizeResponsiveStyle};
   }
 

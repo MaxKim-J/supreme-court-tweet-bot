@@ -45,9 +45,7 @@ const textStyle = (
   color: ${colorTable[color]};
   line-height: ${lineHeight};
   font-size: ${size};
-  font-weight: ${weight};
-  font-family: ${type === 'body' ? '"Gothic A1"' : '"Black Han Sans"'},
-    sans-serif;
+  font-weight: ${type === 'title' ? 900 : weight};
 `;
 
 export default Text;

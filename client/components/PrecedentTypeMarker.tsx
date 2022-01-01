@@ -11,14 +11,16 @@ type PrecedentTypeMarkerProps = {
 function PrecedentTypeMarker({ precedentType }: PrecedentTypeMarkerProps) {
   return (
     <div css={markerStyle(precedentType)}>
-      <Text color="white">{convertPrecedentType(precedentType)}</Text>
+      <Text color="white" weight="bold">
+        {convertPrecedentType(precedentType)}
+      </Text>
     </div>
   );
 }
 
 const markerStyle = (type: PrecedentType) => css`
   background-color: ${colorTable[type]};
-  padding: 0 0.5rem;
+  padding: 0 0.75rem;
   display: inline-block;
 `;
 
