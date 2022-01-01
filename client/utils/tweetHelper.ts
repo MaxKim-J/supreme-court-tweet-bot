@@ -17,8 +17,9 @@ export const convertPrecedentType = (type: PrecedentType) => {
 };
 
 export const getThumbnail = (type: PrecedentType) => {
-  if (type === 'unclassified') return '/meta-default.png';
-  return `/meta-${type}.png`;
+  if (type === 'unclassified')
+    return 'https://supreme-court-tweet-bot.vercel.app/meta-default.png';
+  return `https://supreme-court-tweet-bot.vercel.app/meta-${type}.png`;
 };
 
 export const getUniqueNumber = (tweetName: string) => {
