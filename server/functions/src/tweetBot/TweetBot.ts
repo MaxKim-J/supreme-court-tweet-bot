@@ -28,7 +28,7 @@ class TweetBot {
   }
 
   private sliceTweet(title: string) {
-    if (title.length > 136) return title.slice(0, 137) + '...';
+    if (title.length > 220) return title.slice(0, 217) + '...';
     return title;
   }
 }
