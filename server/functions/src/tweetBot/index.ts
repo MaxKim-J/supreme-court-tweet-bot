@@ -12,6 +12,7 @@ const postTweet = async (req: Request, res: Response) => {
       const { id, name } = tweet;
 
       console.log(`${id}번 ${name} 트윗을 업로드합니다.`);
+
       bot.postTweet(id, name);
 
       const uploadedAt = await dataBase.updateTweetTimeStamp(id);

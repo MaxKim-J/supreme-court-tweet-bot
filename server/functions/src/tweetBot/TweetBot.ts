@@ -15,7 +15,9 @@ class TweetBot {
     this.client.post(
       'statuses/update',
       {
-        status: `${title}\nhttps://tweet-bot-client.vercel.app/detail/${id}`,
+        status: `${this.sliceTweet(
+          title
+        )}\nhttps://tweet-bot-client.vercel.app/detail/${id}`,
       },
       (err) => {
         if (err) {
@@ -23,6 +25,11 @@ class TweetBot {
         }
       }
     );
+  }
+
+  private sliceTweet(title: string) {
+    if (title.length > 136) return title.slice(0, 137) + '...';
+    return title;
   }
 }
 
