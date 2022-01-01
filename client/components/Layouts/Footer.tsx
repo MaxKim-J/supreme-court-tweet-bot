@@ -20,11 +20,13 @@ function Footer() {
         Developed By Max Kim
       </Text>
       <Spacer height="2rem" />
-      <Text size="0.8rem">
+      <Text size="0.8rem" lineHeight="1rem">
         전국의 법 공부하시는 모든 분들 오늘도 고생 많으십니다.
       </Text>
-      <Text size="0.8rem">판례봇이 조금이라도 도움이 되었으면 좋겠습니다!</Text>
-      <Text size="0.8rem">
+      <Text size="0.8rem" lineHeight="1rem">
+        판례봇이 조금이라도 도움이 되었으면 좋겠습니다!
+      </Text>
+      <Text size="0.8rem" lineHeight="1rem">
         판례요지봇에 대한 피드백, 건의사항은 하단 메일로 연락주세요.
       </Text>
       <Spacer height="1rem" />
@@ -32,12 +34,13 @@ function Footer() {
         {linkListData.map((link) => (
           <li key={link.id}>
             <a href={link.href}>
-              <Text size="0.8rem">{link.text}</Text>
+              <Text size="0.8rem" underline>
+                {link.text}
+              </Text>
             </a>
           </li>
         ))}
       </ul>
-      <Spacer height="1rem" />
       <Text size="0.5rem">Supreme Court Precedent Bot© Max Kim. 2021</Text>
       <Spacer height="2rem" />
     </footer>

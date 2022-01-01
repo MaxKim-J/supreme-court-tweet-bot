@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import useSWR from 'swr';
 import { apiClient } from '../utils/apiClient';
 import { Tweet } from '../types';
@@ -6,6 +7,7 @@ import Text from './fundamentals/Text';
 import Spacer from './fundamentals/Spacer';
 import { css } from '@emotion/react';
 import UploadedTweetSkeleton from './Skeletons/UploadedTweetSkeleton';
+import sliceTweet from '../utils/sliceTweet';
 
 function TweetListSection() {
   const { data, error } = useSWR('/tweets/last', async () => {
@@ -21,22 +23,26 @@ function TweetListSection() {
       <Spacer height="2rem" />
       {data && !error ? (
         <ol>
-          {data.tweets.map((tweet: Tweet) => (
-            <>
-              <li key={tweet.id}>
-                <Link href={`tweet/${tweet.id}`}>{tweet.name}</Link>
+          {data.tweets.map((tweet: Tweet, index: number) => (
+            <Fragment key={tweet.id}>
+              <li>
+                <Text>
+                  <Link href={`/tweet/${tweet.id}`}>
+                    {`${index + 1}. ` + sliceTweet(tweet.name)}
+                  </Link>
+                </Text>
               </li>
               <Spacer height="1rem" />
-            </>
+            </Fragment>
           ))}
         </ol>
       ) : (
         <>
           {Array.from({ length: 5 }, (_, i) => i).map((index) => (
-            <>
+            <Fragment key={index}>
               <UploadedTweetSkeleton />
               <Spacer height="1rem" />
-            </>
+            </Fragment>
           ))}
         </>
       )}

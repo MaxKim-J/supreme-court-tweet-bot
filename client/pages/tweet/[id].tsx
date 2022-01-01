@@ -2,14 +2,16 @@ import { GetServerSideProps } from 'next';
 import { apiClient } from '../../utils/apiClient';
 import { Tweet } from '../../types';
 import Head from 'next/head';
-import Text from '../../components/fundamentals/Text';
+import TweetDetailSection from '../../components/TweetDetailSection';
+import TweetListSection from '../../components/TweetListSection';
+import { css } from '@emotion/react';
+import Spacer from '../../components/fundamentals/Spacer';
 
 type TweetPageProps = {
-  id: string;
   tweet: Tweet;
 };
 
-function TweetPage({ id, tweet }: TweetPageProps) {
+function TweetPage({ tweet }: TweetPageProps) {
   return (
     <>
       <Head>
@@ -20,10 +22,11 @@ function TweetPage({ id, tweet }: TweetPageProps) {
         <meta property="og:title" content={tweet.name} />
         <meta property="og:image" content="/" />
       </Head>
-
-      <div>트윗 페이지{id}</div>
-
-      <Text>{tweet.content}</Text>
+      <section css={tweetDetailSectionStyle}>
+        <TweetDetailSection tweet={tweet} />
+        <Spacer height="3rem" />
+        <TweetListSection />
+      </section>
     </>
   );
 }
@@ -35,10 +38,14 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       data: { tweet },
     } = await apiClient.get(`/tweet/${id}`);
 
-    return { props: { id: params?.id, tweet } };
+    return { props: { tweet } };
   } catch (e) {
     return { notFound: true };
   }
 };
+
+const tweetDetailSectionStyle = css`
+  min-height: 100vh;
+`;
 
 export default TweetPage;

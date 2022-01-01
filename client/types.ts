@@ -7,11 +7,10 @@ export type PrecedentType =
 
 export interface Tweet {
   id: string;
-  url: string;
   name: string;
-  uploadedAt: null | Date;
   content: string;
-  precedent: string;
+  uploadedAt: null | Date;
+  precedentContent: string[];
   type: PrecedentType;
 }
 

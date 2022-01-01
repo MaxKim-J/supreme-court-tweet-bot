@@ -8,7 +8,6 @@ function TweetSection() {
 
   return (
     <section css={tweetSectionStyle}>
-      {/*<TweetSectionSkeleton />*/}
       {isLoading && <TweetSectionSkeleton />}
       <div css={tweetContentStyle(isLoading)}>
         <Tweet

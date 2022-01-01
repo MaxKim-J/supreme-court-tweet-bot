@@ -82,6 +82,10 @@ const globalStyle = css`
     background: transparent;
     list-style: none;
   }
+
+  details {
+    cursor: pointer;
+  }
 `;
 
 export default GlobalStyle;
