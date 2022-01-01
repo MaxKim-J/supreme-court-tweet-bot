@@ -14,10 +14,8 @@ function TweetDetailSection({ tweet }: TweetDetailSectionProps) {
   return (
     <section css={tweetDetailSectionStyle}>
       <Spacer height="1rem" />
-      <div css={markerWrapperStyle}>
-        <PrecedentTypeMarker precedentType={tweet.type} />
-        <Text size="0.5rem">{tweet.id}</Text>
-      </div>
+      <PrecedentTypeMarker precedentType={tweet.type} />
+
       <Spacer height="2rem" />
       <Text weight="bold" lineHeight="1.5rem">
         {tweet.name}
@@ -54,16 +52,11 @@ function TweetDetailSection({ tweet }: TweetDetailSectionProps) {
     </section>
   );
 }
+
 const tweetDetailSectionStyle = css`
   min-height: 100vh;
 `;
 
-const markerWrapperStyle = css`
-  display: flex;
-  > div {
-    margin-right: 0.5rem;
-  }
-`;
 const tweetContentStyle = css`
   padding: 1rem;
   background-color: ${colorTable.lightGrey};

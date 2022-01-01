@@ -17,11 +17,6 @@ function Home({ appInfo }: HomePageProps) {
       <Head>
         <title>판례요지봇</title>
         <meta property="og:title" content="판례요지봇" />
-        <meta
-          property="og:description"
-          content="대법원 판례를 트윗하는 봇입니다."
-        />
-        <meta property="og:image" content="/" />
       </Head>
       <Spacer height="2rem" />
       <AppInfoSection appInfo={appInfo} />

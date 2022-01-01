@@ -15,3 +15,15 @@ export const convertPrecedentType = (type: PrecedentType) => {
   };
   return convertFilter[type];
 };
+
+export const getThumbnail = (type: PrecedentType) => {
+  if (type === 'unclassified') return '/meta-default.png';
+  return `/meta-${type}.png`;
+};
+
+export const getUniqueNumber = (tweetName: string) => {
+  const uniqueNumberMatch = tweetName.match(/\d+[가-힣]{1,2}\d+/);
+  return uniqueNumberMatch !== null
+    ? uniqueNumberMatch[0]
+    : tweetName.slice(0, 20);
+};
