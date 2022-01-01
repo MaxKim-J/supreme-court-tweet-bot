@@ -1,41 +1,11 @@
 import { css, Global } from '@emotion/react';
+import { fontSizeResponsiveStyle } from './responsive';
 
 const GlobalStyle = () => <Global styles={globalStyle} />;
 
-const fontFace = css`
-  @font-face {
-    font-family: 'NanumBarunGothic';
-    font-style: normal;
-    font-weight: 400;
-    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
-    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix')
-        format('embedded-opentype'),
-      url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff')
-        format('woff'),
-      url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf')
-        format('truetype');
-  }
-
-  @font-face {
-    font-family: 'Y_Spotlight';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/Y_Spotlight.woff')
-      format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-`;
-
 const globalStyle = css`
-  ${fontFace}
-
   html {
-    @media (max-width: 382px) {
-      font-size: 14px;
-    }
-
-    @media (min-width: 382px) {
-      font-size: 16px;
-    }
+    ${fontSizeResponsiveStyle};
   }
 
   p,
