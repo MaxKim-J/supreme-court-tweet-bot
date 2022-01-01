@@ -3,18 +3,14 @@ import GlobalStyle from '../styles/GlobalStyle';
 import { css } from '@emotion/react';
 import Header from '../components/Layouts/Header';
 import Footer from '../components/Layouts/Footer';
-import Head from 'next/head';
-import Fonts from '../styles/Fonts';
 import { widthResponsiveStyle } from '../styles/responsive';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <Fonts />
         <GlobalStyle />
-        <title>판례요지봇</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div css={appWrapperStyle}>
         <section css={appSectionStyle}>

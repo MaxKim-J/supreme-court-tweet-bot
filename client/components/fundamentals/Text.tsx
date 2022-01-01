@@ -46,7 +46,7 @@ const textStyle = (
   line-height: ${lineHeight};
   font-size: ${size};
   font-weight: ${weight};
-  font-family: ${type === 'body' ? "'NanumBarunGothic'" : "'Y_Spotlight'"},
+  font-family: ${type === 'body' ? "'Nanum Gothic'" : "'Black Han Sans'"},
     sans-serif;
 `;
 

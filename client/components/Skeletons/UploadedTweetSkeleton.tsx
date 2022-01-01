@@ -4,13 +4,13 @@ function UploadedTweetSkeleton() {
   return (
     <ContentLoader
       speed={2}
-      style={{ width: '100%', height: '3.5rem' }}
+      style={{ width: '100%', height: '4rem' }}
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
     >
-      <rect x="0" y="0" rx="3" ry="3" width="350" height="10" />
-      <rect x="0" y="15" rx="3" ry="3" width="350" height="10" />
-      <rect x="0" y="30" rx="3" ry="3" width="178" height="10" />
+      <rect x="0" y="0" rx="3" ry="3" width="430" height="14" />
+      <rect x="0" y="20" rx="3" ry="3" width="430" height="14" />
+      <rect x="0" y="40" rx="3" ry="3" width="200" height="14" />
     </ContentLoader>
   );
 }

@@ -6,7 +6,7 @@ import { widthResponsiveStyle } from '../../styles/responsive';
 function Header() {
   return (
     <header css={headerStyle}>
-      <Text size="2rem">
+      <Text size="2rem" type="title">
         <Link href="/">판례요지봇</Link>
       </Text>
     </header>
@@ -28,9 +28,6 @@ const headerStyle = css`
   box-shadow: 0 13px 16px -8px rgba(0, 0, 0, 0.05);
   height: 3.5rem;
   z-index: 1;
-  > p {
-    font-family: 'Y_Spotlight', sans-serif;
-  }
 `;
 
 export default Header;
