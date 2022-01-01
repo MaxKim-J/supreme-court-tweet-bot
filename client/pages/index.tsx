@@ -27,7 +27,7 @@ function Home({ appInfo }: HomePageProps) {
       <AppInfoSection appInfo={appInfo} />
       <Spacer height="2rem" />
       <TweetSection />
-      <Spacer height="2rem" />
+      <Spacer height="3rem" />
       <TweetListSection />
     </>
   );

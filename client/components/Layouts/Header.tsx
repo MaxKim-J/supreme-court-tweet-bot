@@ -1,10 +1,13 @@
 import Text from '../fundamentals/Text';
 import { css } from '@emotion/react';
+import Link from 'next/link';
 
 function Header() {
   return (
     <header css={headerStyle}>
-      <Text size="2rem">판례요지봇</Text>
+      <Text size="2rem">
+        <Link href="/">판례요지봇</Link>
+      </Text>
     </header>
   );
 }

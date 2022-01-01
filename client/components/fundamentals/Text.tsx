@@ -8,7 +8,7 @@ type fontFaceType = 'body' | 'title';
 type TextProps = {
   size?: SizeType;
   weight?: WeightType;
-  children: ReactChild[] | ReactText;
+  children: ReactChild[] | ReactChild;
   type?: fontFaceType;
 };
 

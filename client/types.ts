@@ -11,6 +11,7 @@ export interface Tweet {
   name: string;
   uploadedAt: null | Date;
   content: string;
+  precedent: string;
   type: PrecedentType;
 }
 

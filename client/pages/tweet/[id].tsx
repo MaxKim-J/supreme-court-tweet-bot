@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next';
-import Link from 'next/link';
 import { apiClient } from '../../utils/apiClient';
 import { Tweet } from '../../types';
 import Head from 'next/head';
+import Text from '../../components/fundamentals/Text';
 
 type TweetPageProps = {
   id: string;
@@ -20,8 +20,10 @@ function TweetPage({ id, tweet }: TweetPageProps) {
         <meta property="og:title" content={tweet.name} />
         <meta property="og:image" content="/" />
       </Head>
+
       <div>트윗 페이지{id}</div>
-      <Link href="/">가보기</Link>
+
+      <Text>{tweet.content}</Text>
     </>
   );
 }

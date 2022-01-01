@@ -30,7 +30,7 @@ const globalStyle = css`
 
   html {
     @media (max-width: 420px) {
-      font-size: 12px;
+      font-size: 14px;
     }
 
     @media (min-width: 420px) {

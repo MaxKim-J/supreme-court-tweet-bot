@@ -45,8 +45,7 @@ function TweetListSection() {
 }
 
 const listSectionStyle = css`
-  min-height: calc(3.5rem * 10);
-  padding-top: 1rem;
+  min-height: 35rem;
 `;
 
 export default TweetListSection;

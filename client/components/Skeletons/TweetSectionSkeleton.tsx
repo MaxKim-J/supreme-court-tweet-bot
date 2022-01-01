@@ -9,7 +9,7 @@ function TweetSectionSkeleton() {
         backgroundColor="#f3f3f3"
         foregroundColor="#ecebeb"
       >
-        <rect x="0" y="0" rx="3" ry="3" width="500" height="400" />
+        <rect x="0" y="0" rx="3" ry="3" width="500" height="500" />
       </ContentLoader>
     </div>
   );
