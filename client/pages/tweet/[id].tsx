@@ -26,7 +26,7 @@ function TweetPage({ tweet, title, metaImage }: TweetPageProps) {
         <meta name="twitter:title" content="판례요지봇" />
         <meta name="twitter:description" content="이 트윗과 연관된 판례 보기" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:image" content={metaImage} />
+        <meta name="twitter:image" content={window.location.host + metaImage} />
       </Head>
       <section>
         <TweetDetailSection tweet={tweet} />
