@@ -1,15 +1,15 @@
 import { Fragment } from 'react';
 import useSWR from 'swr';
+import Link from 'next/link';
+import { css } from '@emotion/react';
+import { motion } from 'framer-motion';
 import { apiClient } from '../utils/apiClient';
 import { Tweet } from '../types';
-import Link from 'next/link';
 import Text from './fundamentals/Text';
 import Spacer from './fundamentals/Spacer';
-import { css } from '@emotion/react';
 import UploadedTweetSkeleton from './Skeletons/UploadedTweetSkeleton';
 import { sliceTweetName } from '../utils/tweetHelper';
 import Divider from './fundamentals/Divider';
-import { motion } from 'framer-motion';
 
 function TweetListSection() {
   const { data, error } = useSWR('/tweets/last', async () => {

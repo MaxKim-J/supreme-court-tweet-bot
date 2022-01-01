@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-import Spacer from './Spacer';
 import colorTable from '../../styles/colorTable';
 
 type DividerProps = {

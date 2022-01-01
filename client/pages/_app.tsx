@@ -1,8 +1,8 @@
 import type { AppProps } from 'next/app';
-import GlobalStyle from '../styles/GlobalStyle';
 import { css } from '@emotion/react';
 import Header from '../components/Layouts/Header';
 import Footer from '../components/Layouts/Footer';
+import GlobalStyle from '../styles/GlobalStyle';
 import { widthResponsiveStyle } from '../styles/responsive';
 import Head from 'next/head';
 

@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import GlobalStyle from '../styles/GlobalStyle';
 
 class MyDocument extends Document {
   render() {
