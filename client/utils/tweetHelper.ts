@@ -17,8 +17,8 @@ export const convertPrecedentType = (type: PrecedentType) => {
 };
 
 export const getThumbnail = (type: PrecedentType) => {
-  if (type === 'unclassified') return '/meta-default.png';
-  return `/meta-${type}.png`;
+  if (type === 'unclassified') return '%PUBLIC_URL%/meta-default.png';
+  return `%PUBLIC_URL%/meta-${type}.png`;
 };
 
 export const getUniqueNumber = (tweetName: string) => {
