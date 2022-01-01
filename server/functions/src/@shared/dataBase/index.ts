@@ -8,7 +8,7 @@ const readUploadedTweets = async () => {
     .firestore()
     .collection('tweet')
     .where('uploadedAt', '!=', null)
-    .orderBy('uploadedAt')
+    .orderBy('uploadedAt', 'desc')
     .limit(10);
   const result = await query.get();
   return result.docs.map((x) => x.data() as Tweet);
