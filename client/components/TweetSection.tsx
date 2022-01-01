@@ -11,7 +11,7 @@ function TweetSection() {
       {isLoading && <TweetSectionSkeleton />}
       <div css={tweetContentStyle(isLoading)}>
         <Tweet
-          tweetId="1305146545327620096"
+          tweetId="1477307967011946499"
           onLoad={() => {
             setIsLoading(false);
           }}
