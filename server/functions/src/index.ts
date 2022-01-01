@@ -24,6 +24,9 @@ exports.scrapAll = functions
 
 exports.scrapRecent = functions
   .runWith(defaultRuntimeOpts)
-  .https.onRequest(crawler.scrapRecent);
+  .pubsub.schedule('00 00 * * *')
+  .onRun(crawler.scrapRecent);
 
-exports.postTweet = functions.https.onRequest(tweetBot.postTweet);
+exports.postTweet = functions.pubsub
+  .schedule('00 7,12,18 * * *')
+  .onRun(tweetBot.postTweet);
