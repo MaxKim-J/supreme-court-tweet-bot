@@ -46,7 +46,9 @@ const textStyle = (
   line-height: ${lineHeight};
   font-size: ${size};
   font-weight: ${weight};
-  font-family: ${type === 'body' ? "'Gothic A1'" : "'Black Han Sans'"},
+  font-family: ${type === 'body'
+      ? "'Gothic A1'"
+      : "'Black Han Sans', 'Gothic A1'"},
     sans-serif;
 `;
 

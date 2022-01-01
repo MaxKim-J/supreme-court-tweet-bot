@@ -12,7 +12,7 @@ class MyDocument extends Document {
           <link
             rel="preload"
             href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@500&display=swap"
-            type="stylesheet"
+            as="stylesheet"
           />
           <meta
             property="og:description"
