@@ -22,16 +22,18 @@ function TweetSection() {
 }
 
 const tweetSectionStyle = css`
-  width: 100%;
   position: relative;
-  height: 350px;
+  height: 360px;
+  display: flex;
+  justify-content: center;
 `;
 
 const tweetContentStyle = (isLoading: boolean) => css`
-  width: 100%;
   opacity: ${isLoading ? 0 : 1};
   transition: opacity 1s ease-in;
   position: absolute;
+  width: 100%;
+  max-width: 350px;
 `;
 
 export default TweetSection;
