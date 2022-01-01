@@ -14,10 +14,12 @@ const readUploadedTweets = async () => {
   return result.docs.map((x) => x.data() as Tweet);
 };
 
-const readTweet = async (id: string): Promise<TweetResponse> => {
+const readTweet = async (id: string): Promise<TweetResponse | undefined> => {
   const query = admin.firestore().collection('tweet').doc(id);
   const tweetById = await query.get();
   const tweet = tweetById.data() as Tweet;
+
+  if (!tweet) return undefined;
 
   const precedentQuery = await admin
     .firestore()

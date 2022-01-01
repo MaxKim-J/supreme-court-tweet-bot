@@ -41,7 +41,7 @@ const scrapAll = async (req: Request, res: Response) => {
     console.log(`DB에 ${tweets.length}개 트윗을 저장했습니다.`);
 
     console.log('크롤러를 종료하고 200 응답을 보냅니다.');
-    res.status(200).send({
+    return res.status(200).send({
       precedentLength: issueLength + recentLength,
       tweetLength: tweets.length,
     });
@@ -49,7 +49,7 @@ const scrapAll = async (req: Request, res: Response) => {
     console.log(
       `***에러가 발생했습니다. 크롤러를 종료하고 500 응답을 보냅니다.***`
     );
-    res.status(500).send({
+    return res.status(500).send({
       message: err.message,
       error: err,
     });
@@ -104,11 +104,16 @@ const scrapRecent = async (req: Request, res: Response) => {
       );
       await dataBase.createTweets(tweets);
       console.log(`DB에 ${tweets.length}개 트윗을 저장했습니다.`);
+
+      return res.status(200).send({
+        precedentLength: newIssueLength + newRecentLength,
+        tweetLength: tweets.length,
+      });
     } else {
       console.log(
         `***새롭게 크롤링할 판례가 없습니다. 크롤러를 종료하고 200 응답을 보냅니다.***`
       );
-      res.status(200).send({
+      return res.status(200).send({
         message: '새롭게 크롤링할 판례가 없습니다!',
       });
     }
@@ -116,7 +121,7 @@ const scrapRecent = async (req: Request, res: Response) => {
     console.log(
       `***에러가 발생했습니다. 크롤러를 종료하고 500 응답을 보냅니다.***`
     );
-    res.status(500).send({
+    return res.status(500).send({
       message: err.message,
       error: err,
     });
