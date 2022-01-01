@@ -2,6 +2,7 @@ import { crawlTarget } from '../@shared/configs';
 import filterPrecedentType from './utils/precedentTypeFilter';
 import lengthFilter from './utils/lengthFilter';
 import { Browser, ElementHandle, EvaluateFn, Page } from 'puppeteer';
+import { Precedent, PrecedentType } from '../@shared/types';
 
 class Crawler {
   constructor(private browser: Browser, private page: Page) {
@@ -33,7 +34,10 @@ class Crawler {
 
   // recent는 마지막으로 크롤링된 판례수를 참조해 최신만 긁음
   // 얼마나 긁을지는 밖에서 준 limit으로 판단
-  public async scrapRecentPrecedents(type: 'issue' | 'recent', limit: number) {
+  public async scrapRecentPrecedents(
+    type: 'issue' | 'recent',
+    limit: number
+  ): Promise<Precedent[]> {
     await this.setScrapTarget('recent');
     let sections = await this.getPrecedentSections();
     return await this.scrapPrecedentSections(sections.slice(0, limit));
@@ -113,16 +117,18 @@ class Crawler {
     );
   }
 
-  private async scrapPrecedentSection(section: ElementHandle) {
+  private async scrapPrecedentSection(
+    section: ElementHandle
+  ): Promise<Precedent> {
     const { name, type } = await this.scrapPrecedentNameAndType(section);
-    const url = await this.scrapPrecedentUrl(section);
+    const id = await this.scrapPrecedentId(section);
     const content = await this.scrapPrecedentContent(section);
-    return { name, type, url, content };
+    return { name, type, id, content };
   }
 
   private async scrapPrecedentNameAndType(section: ElementHandle) {
     let name = '',
-      type = '';
+      type: PrecedentType = 'unclassified';
     const titleElem = await section.$('td:nth-child(2)>dl>dt>a>strong>strong');
     if (titleElem) {
       name = await titleElem.evaluate<EvaluateFn>(
@@ -136,15 +142,15 @@ class Crawler {
     return { name, type };
   }
 
-  private async scrapPrecedentUrl(section: ElementHandle) {
-    let url = '';
-    const urlElem = await section.$('td:nth-child(2)>dl>dt>a:nth-child(2)');
-    if (urlElem) {
-      url = await urlElem.evaluate<EvaluateFn>(
+  private async scrapPrecedentId(section: ElementHandle) {
+    let precedentId = '';
+    const idElem = await section.$('td:nth-child(2)>dl>dt>a:nth-child(2)');
+    if (idElem) {
+      precedentId = await idElem.evaluate<EvaluateFn>(
         (elem: HTMLElement) => elem.id.split('_')[1]
       );
     }
-    return url;
+    return precedentId;
   }
 
   private async scrapPrecedentContent(section: ElementHandle) {

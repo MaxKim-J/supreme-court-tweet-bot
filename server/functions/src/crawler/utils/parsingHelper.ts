@@ -1,14 +1,14 @@
-// br 단위로 트윗을 나눈다
+import { Precedent, Tweet } from '../../@shared/types';
 
-const parseContent = (content: string) =>
+export const parseContent = (content: string) =>
   content.split('<br>').filter((line: string) => line);
 
-const convertToTweet = (data: any): any[] => {
-  const result: any[] = [];
+const convertToTweet = (data: Precedent): Tweet[] => {
+  const result: Tweet[] = [];
   parseContent(data.content).forEach((content, index) => {
     result.push({
-      ...data,
-      id: `${data.url}-${index + 1}`,
+      id: `${data.id}-${index + 1}`,
+      name: data.name,
       content,
       uploadedAt: null,
     });

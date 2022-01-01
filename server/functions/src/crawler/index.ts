@@ -3,6 +3,7 @@ import Crawler from './Crawler';
 import dataBase from '../@shared/dataBase';
 import convertToTweet from './utils/parsingHelper';
 import { Request, Response } from 'express';
+import { Precedent, Tweet } from '../@shared/types';
 
 const scrapAll = async (req: Request, res: Response) => {
   try {
@@ -11,14 +12,14 @@ const scrapAll = async (req: Request, res: Response) => {
     const page = await browser.newPage();
     const crawler = new Crawler(browser, page);
 
-    const result = [];
+    const precedents: Precedent[] = [];
 
     const issueLength = await crawler.getTargetPrecedentsLength('issue');
-    result.push(...(await crawler.scrapAllPrecedents('issue')));
+    precedents.push(...(await crawler.scrapAllPrecedents('issue')));
     await dataBase.updateIssueLength(issueLength);
 
     const recentLength = await crawler.getTargetPrecedentsLength('recent');
-    result.push(...(await crawler.scrapAllPrecedents('recent')));
+    precedents.push(...(await crawler.scrapAllPrecedents('recent')));
     await dataBase.updateRecentLength(recentLength);
 
     await crawler.shutCrawlerDown();
@@ -28,10 +29,13 @@ const scrapAll = async (req: Request, res: Response) => {
       `DB에 화제 판례 개수(${issueLength}), 최신 판례 개수(${recentLength})를 기록했습니다.`
     );
 
-    const tweets = result.reduce(
-      (acc, cur) => acc.concat(convertToTweet(cur)),
+    await dataBase.createPrecedents(precedents);
+
+    const tweets = precedents.reduce(
+      (acc: Tweet[], cur) => acc.concat(convertToTweet(cur)),
       []
     );
+
     await dataBase.createTweets(tweets);
 
     console.log(`DB에 ${tweets.length}개 트윗을 저장했습니다.`);
@@ -65,7 +69,7 @@ const scrapRecent = async (req: Request, res: Response) => {
       `현재까지 DB에 저장된 화제판례는 ${lastIssueLength}개, 최신판례는 ${lastRecentLength}개 입니다.`
     );
 
-    let newPrecedents = [];
+    let newPrecedents: Precedent[] = [];
     const newIssueLength = await crawler.getTargetPrecedentsLength('issue');
     if (newIssueLength - lastIssueLength > 0) {
       newPrecedents.push(
@@ -92,6 +96,8 @@ const scrapRecent = async (req: Request, res: Response) => {
       console.log(
         `현재 화제판례 ${newIssueLength}개, 최신판례 ${newRecentLength}개를 크롤링했습니다`
       );
+
+      await dataBase.createPrecedents(newPrecedents);
       const tweets = (newPrecedents as any[]).reduce(
         (acc, cur) => acc.concat(convertToTweet(cur)),
         []

@@ -1,6 +1,7 @@
 import admin from 'firebase-admin';
 import { batchDivider } from '../../crawler/utils/batchSplitHelper';
-import { Tweet } from '../types';
+import { Precedent, Tweet, TweetResponse } from '../types';
+import { parseContent } from '../../crawler/utils/parsingHelper';
 
 const readUploadedTweets = async () => {
   const query = admin
@@ -13,10 +14,24 @@ const readUploadedTweets = async () => {
   return result.docs.map((x) => x.data() as Tweet);
 };
 
-const readTweet = async (id: string) => {
-  const query = admin.firestore().collection('tweet').where('id', '==', id);
-  const result = await query.get();
-  return result.docs.map((x) => x.data() as Tweet)[0];
+const readTweet = async (id: string): Promise<TweetResponse> => {
+  const query = admin.firestore().collection('tweet').doc(id);
+  const tweetById = await query.get();
+  const tweet = tweetById.data() as Tweet;
+
+  const precedentQuery = await admin
+    .firestore()
+    .collection('precedent')
+    .doc(tweet.id.split('-')[0]);
+
+  const precedents = await precedentQuery.get();
+  const precedent = precedents.data() as Precedent;
+
+  return {
+    ...tweet,
+    precedentContent: parseContent(precedent.content),
+    type: precedent.type,
+  };
 };
 
 const readUploadedTweetsLength = async () => {
@@ -28,14 +43,16 @@ const readUploadedTweetsLength = async () => {
   return result.docs.length;
 };
 
-const readTweetForPost = async () => {
-  const query = admin
+const readTweetForPost = async (): Promise<Tweet> => {
+  const tweetQuery = admin
     .firestore()
     .collection('tweet')
-    .where('uploadedAt', '==', null)
-    .limit(1);
-  const result = await query.get();
-  return result.docs.map((x) => x.data() as Tweet)[0];
+    .where('uploadedAt', '==', null);
+
+  const tweets = await tweetQuery.get();
+  const randomIndex = Math.floor(Math.random() * tweets.docs.length);
+
+  return tweets.docs[randomIndex].data() as Tweet;
 };
 
 const updateTweetTimeStamp = async (id: string) => {
@@ -45,7 +62,22 @@ const updateTweetTimeStamp = async (id: string) => {
   });
 };
 
-const createTweets = async (tweets: any[]) => {
+const createPrecedents = async (precedents: Precedent[]) => {
+  const batchedPrecedents = batchDivider(precedents);
+  for (const precedents of batchedPrecedents) {
+    const batch = admin.firestore().batch();
+    for (const precedent of precedents) {
+      const newDocRef = admin
+        .firestore()
+        .collection('precedent')
+        .doc(precedent.id);
+      batch.set(newDocRef, precedent);
+    }
+    await batch.commit();
+  }
+};
+
+const createTweets = async (tweets: Tweet[]) => {
   const batchedTweets = batchDivider(tweets);
   for (const tweets of batchedTweets) {
     const batch = admin.firestore().batch();
@@ -90,4 +122,5 @@ export default {
   readFormerLength,
   updateIssueLength,
   updateRecentLength,
+  createPrecedents,
 };
