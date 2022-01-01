@@ -17,7 +17,7 @@ class TweetBot {
       {
         status: `${this.sliceTweet(
           title
-        )}\nhttps://tweet-bot-client.vercel.app/detail/${id}`,
+        )}\nhttps://supreme-court-tweet-bot.vercel.app/tweet/${id}`,
       },
       (err) => {
         if (err) {
