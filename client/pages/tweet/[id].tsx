@@ -13,18 +13,16 @@ import {
 
 type TweetPageProps = {
   tweet: Tweet;
+  title: string;
 };
 
-function TweetPage({ tweet }: TweetPageProps) {
+function TweetPage({ tweet, title }: TweetPageProps) {
   return (
     <>
       <Head>
-        <title>
-          판례요지봇 | {convertPrecedentType(tweet.type)}{' '}
-          {getUniqueNumber(tweet.name)}
-        </title>
-        <meta property="og:title" content={getUniqueNumber(tweet.name)} />
-        <meta name="twitter:title" content="판례요지봇" />
+        <title>{title}</title>
+        <meta property="og:title" content={title} />
+        <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content="이 트윗과 연관된 판례 보기" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:image" content={getThumbnail(tweet.type)} />
@@ -45,7 +43,11 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       data: { tweet },
     } = await apiClient.get(`/tweet/${id}`);
 
-    return { props: { tweet } };
+    const title = `판례요지봇 | ${convertPrecedentType(
+      tweet.type
+    )} ${getUniqueNumber(tweet.name)}`;
+
+    return { props: { tweet, title } };
   } catch (e) {
     return { notFound: true };
   }
