@@ -44,8 +44,19 @@ const getLastTweets = async (
   }
 };
 
+const getTweetIds = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const tweetIds = await database.readAllTweetsId();
+    console.log(tweetIds.length);
+    return res.status(200).json({ tweetIds });
+  } catch (e) {
+    return next(e);
+  }
+};
+
 export default {
   getInfo,
   getTweetById,
   getLastTweets,
+  getTweetIds,
 };

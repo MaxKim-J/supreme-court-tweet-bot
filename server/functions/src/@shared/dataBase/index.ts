@@ -36,6 +36,12 @@ const readTweet = async (id: string): Promise<TweetResponse | undefined> => {
   };
 };
 
+const readAllTweetsId = async (): Promise<string[]> => {
+  const query = admin.firestore().collection('tweet').select('id');
+  const tweetIds = await query.get();
+  return tweetIds.docs.map((x) => x.data().id as string);
+};
+
 const readUploadedTweetsLength = async () => {
   const query = admin
     .firestore()
@@ -125,4 +131,5 @@ export default {
   updateIssueLength,
   updateRecentLength,
   createPrecedents,
+  readAllTweetsId,
 };

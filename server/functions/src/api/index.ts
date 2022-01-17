@@ -8,7 +8,8 @@ const loadExpressApp = (app: Express) => {
 
   app.get('/info', controller.getInfo);
   app.get('/tweet/:id', controller.getTweetById);
-  app.get('/tweets/last', controller.getLastTweets); // 거슬리는데..
+  app.get('/tweets/last', controller.getLastTweets);
+  app.get('/tweets/id', controller.getTweetIds);
 
   app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
     const errorCode = error instanceof ResponseError ? error.statusCode : 500;
