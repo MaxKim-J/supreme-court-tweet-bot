@@ -5,7 +5,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>판례요지봇</title>
           <link rel="icon" href="/favicon.png" />
           <link
             rel="preload"
