@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { apiClient } from '../../utils/apiClient';
 import { Tweet } from '../../types';
 import Head from 'next/head';
@@ -37,17 +37,13 @@ function TweetPage({ tweet, title }: TweetPageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // id들 요청하기
   const {
-    data: { tweet },
-  } = await apiClient.get(`/tweet/${id}`);
+    data: { tweetIds },
+  } = await apiClient.get('/tweets/id');
 
-  // 빌드할 id를 배열루 Path 함수로 해서 리턴하기
-  const paths = snapshot.docs.map((doc) => {
-    const { slug, username } = doc.data();
-
+  const paths = tweetIds.map((id: string) => {
     return {
-      params: { username, slug },
+      params: { id },
     };
   });
 
