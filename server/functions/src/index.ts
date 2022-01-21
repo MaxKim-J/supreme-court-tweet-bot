@@ -22,7 +22,7 @@ exports.scrapAll = functions
   .runWith(defaultRuntimeOpts)
   .https.onRequest(crawler.scrapAll);
 
-exports.scheduledScrap = functions
+exports.scrapRecent = functions
   .runWith(defaultRuntimeOpts)
   .https.onRequest(crawler.scrapRecent);
 
