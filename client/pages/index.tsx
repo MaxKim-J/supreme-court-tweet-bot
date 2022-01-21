@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 import { apiClient } from '../utils/apiClient';
 import { AppInfo } from '../../server/functions/src/@shared/types';
 import TweetSection from '../components/TweetSection';
@@ -28,12 +28,11 @@ function Home({ appInfo }: HomePageProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const { data } = await apiClient.get('/info');
-    return { props: { appInfo: data } };
+    return { props: { appInfo: data }, revalidate: 7200 };
   } catch (e) {
-    // 에러 분류
     return { notFound: true };
   }
 };
