@@ -24,9 +24,7 @@ exports.scrapAll = functions
 
 exports.scheduledScrap = functions
   .runWith(defaultRuntimeOpts)
-  .pubsub.schedule('00 00 * * *')
-  .timeZone('Asia/Seoul')
-  .onRun(crawler.scrapRecent);
+  .https.onRequest(crawler.scrapRecent);
 
 exports.scheduledPostTweet = functions.pubsub
   .schedule('00 7,12,18 * * *')
