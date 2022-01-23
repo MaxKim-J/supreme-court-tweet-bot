@@ -2,7 +2,7 @@
 
 ![last](https://img.shields.io/github/last-commit/MaxKim-J/supreme-court-tweet-bot) ![tweet](https://img.shields.io/twitter/follow/precedent_bot?label=%40precedent_bot&style=social)
 
-![판례요지봇](./판례요지봇.png)
+![판례요지봇](./example.png)
 
 **법원 종합법률정보의 대법원 공개판례의 요지 한 단락을 하루에 3번 트윗하는 봇**
 
