@@ -8,7 +8,7 @@ import { Precedent, Tweet } from '../@shared/types';
 const scrapAll = async (req: Request, res: Response) => {
   try {
     console.log('전체 판례 크롤링을 시작합니다');
-    const browser = await launch({ headless: false });
+    const browser = await launch();
     const page = await browser.newPage();
     const crawler = new Crawler(browser, page);
 
@@ -61,7 +61,7 @@ const scrapAll = async (req: Request, res: Response) => {
 const scrapRecent = async (req: Request, res: Response) => {
   try {
     console.log('최신 판례 크롤링을 시작합니다');
-    const browser = await launch({ headless: false });
+    const browser = await launch();
     const page = await browser.newPage();
     const crawler = new Crawler(browser, page);
 
