@@ -1,6 +1,6 @@
 # 대법원 판례요지봇
 
-![last](https://img.shields.io/github/last-commit/MaxKim-J/supreme-court-API) ![tweet](https://img.shields.io/twitter/follow/precedent_bot?label=%40precedent_bot&style=social)
+![last](https://img.shields.io/github/last-commit/MaxKim-J/supreme-court-tweet-bot) ![tweet](https://img.shields.io/twitter/follow/precedent_bot?label=%40precedent_bot&style=social)
 
 ![판례요지봇](./판례요지봇.png)
 
