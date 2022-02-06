@@ -3,6 +3,7 @@ import ContentLoader from 'react-content-loader';
 function UploadedTweetSkeleton() {
   return (
     <ContentLoader
+      uniqueKey="uploaded-tweet-skeleton"
       speed={2}
       style={{ width: '100%', height: '4rem' }}
       backgroundColor="#f3f3f3"

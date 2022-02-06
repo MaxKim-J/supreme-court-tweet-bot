@@ -3,6 +3,7 @@ import ContentLoader from 'react-content-loader';
 function TweetSectionSkeleton() {
   return (
     <ContentLoader
+      uniqueKey="tweet-section-skeleton"
       speed={1}
       style={{ width: '350px', height: '340px', marginTop: '11px' }}
       backgroundColor="#f3f3f3"
