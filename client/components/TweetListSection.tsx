@@ -1,5 +1,4 @@
 import { Fragment } from 'react';
-import useSWR from 'swr';
 import Link from 'next/link';
 import { css } from '@emotion/react';
 import { motion } from 'framer-motion';
@@ -10,11 +9,16 @@ import Spacer from './fundamentals/Spacer';
 import UploadedTweetSkeleton from './Skeletons/UploadedTweetSkeleton';
 import { sliceTweetName } from '../utils/tweetHelper';
 import Divider from './fundamentals/Divider';
+import { useQuery } from 'react-query';
 
 function TweetListSection() {
-  const { data, error } = useSWR('/tweets/last', async () => {
-    const { data } = await apiClient.get('/tweets/last');
-    return data;
+  const { data, error } = useQuery('/tweets/last', {
+    queryFn: async () => {
+      const { data } = await apiClient.get('/tweets/last');
+      return data;
+    },
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
   });
 
   return (
