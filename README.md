@@ -23,6 +23,20 @@
 - Next.js : 판례 조회 웹 클라이언트에 Next.js를 적용하여 컨텐츠 유형에 따른 동적 메타태그를 적용하고, ISR, 정적 페이지 생성 사용하여 페이지 로드 속도 개선
 - 모바일 특화 디자인 : 모바일 트위터를 통해 유입되는 유저가 대다수이므로, 모바일에 특화된 UI 적용
 
+## 주요 기술 스택
+
+### Server
+
+- Firebase Functions, Firebase FireStore, Firebase Realtime Database
+- Express
+- Puppeteer, twitter.js
+
+### Client
+
+- Next.js, TypeScript
+- React Query
+- Emotion, Framer-motion
+
 ## 데이터 출처
 
 - [대한민국 법원 종합법률정보](https://glaw.scourt.go.kr/wsjo/intesrch/sjo022.do)
